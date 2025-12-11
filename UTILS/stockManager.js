@@ -6,13 +6,24 @@ export function searchStock(identifier) {
 }
 
 function filterAbove(price) {
-    return stockMarket.stocks.map(stock=> stock.currentPrice>price).sort((a, b) => b.goals - a.goals)
+    console.log(stockMarket.stocks.filter(stock=> stock.currentPrice>price).sort((a, b) => b.goals - a.goals))
 }
 
 function filterBalow(price) {
-    stockMarket.stocks.map(stock=> stock.currentPrice<price).sort((a, b) => b.goals - a.goals)
+    console.log(stockMarket.stocks.filter(stock=> stock.currentPrice<price).sort((a, b) => b.goals - a.goals))
 }
 
 export function filterStocksByPrice(givenPrice, above) {
-
+    if (above===true&&isNaN(givenPrice)) {
+        return filterAbove(givenPrice)
+    }
+    else if (above===false&&isNaN(givenPrice)) {
+        return filterBalow(givenPrice)
+    }
+    else {
+        return above
+    }
 }
+
+
+
