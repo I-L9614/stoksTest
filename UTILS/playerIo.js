@@ -19,6 +19,14 @@ export function aboveOrBelow() {
     }
 }
 
-export function askForSaleOrBy() {
+export function askForSellOrBy() {
     return "Did you want to sell or by?(enter sell/by): "
+}
+
+export function askHowMuchUnits() {
+    return parseInt(input("how meny units you want to by/sell? "))
+}
+
+export function nameOrId() {
+    return input("Enter stock id or name: ")
 }
