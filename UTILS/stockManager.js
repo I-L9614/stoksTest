@@ -38,5 +38,20 @@ export function filterStocksByPrice(givenPrice, above) {
     }
 }
 
+function isBuyOrSell(operation) {
+    if (operation!=="buy"||operation!=="sell") {
+        return false
+    }
+    else {
+        return true
+    }
+}
 
+function isIdentifiers(identifier) {
+    return stockMarket.stocks.some(stock => stock.id===identifier||stock.name===identifier)
+}
+
+export function OperateOnStock(operation, identifier) {
+    
+}
 

@@ -18,3 +18,7 @@ export function aboveOrBelow() {
         return true
     }
 }
+
+export function askForSaleOrBy() {
+    return "Did you want to sell or by?(enter sell/by): "
+}
