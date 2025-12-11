@@ -14,10 +14,10 @@ function filterBalow(price) {
 }
 
 export function filterStocksByPrice(givenPrice, above) {
-    if (above===true&&isNaN(givenPrice)) {
+    if (above===true&&!isNaN(givenPrice)) {
         return filterAbove(givenPrice)
     }
-    else if (above===false&&isNaN(givenPrice)) {
+    else if (above===false&&!isNaN(givenPrice)) {
         return filterBalow(givenPrice)
     }
     else {
