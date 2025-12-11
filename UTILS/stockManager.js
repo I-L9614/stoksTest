@@ -1,3 +1,4 @@
+import { before } from "node:test"
 import { stockMarket } from "../DATA/data.js"
 
 export function searchStock(identifier) {
@@ -6,11 +7,23 @@ export function searchStock(identifier) {
 }
 
 function filterAbove(price) {
-    console.log(stockMarket.stocks.filter(stock=> stock.currentPrice>price).sort((a, b) => b.goals - a.goals))
+    const above = stockMarket.stocks.filter(stock=> stock.currentPrice>price).sort((a, b) => b.goals - a.goals)
+    if (above.length===0) {
+        console.log("there is no stocks with higher price!")
+    }
+    else {
+        console.log(above)
+    }
 }
 
 function filterBalow(price) {
-    console.log(stockMarket.stocks.filter(stock=> stock.currentPrice<price).sort((a, b) => b.goals - a.goals))
+    const Below = stockMarket.stocks.filter(stock=> stock.currentPrice<price).sort((a, b) => b.goals - a.goals)
+    if (Below.length===0) {
+        console.log("there is no stocks with lower price!")
+    }
+    else {
+        console.log(Below)
+    }
 }
 
 export function filterStocksByPrice(givenPrice, above) {
