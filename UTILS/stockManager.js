@@ -94,35 +94,39 @@ function updateDown(category, id) {
     }
 }
 
-function insertPreviousPrices(object) {
-
+function insertPreviousPrices() {
+    for (let i = 0; i < stockMarket.stocks.length; i++) {
+        object.previousPrices.push(object.currentPrice)
+    }
 }
 
 export function OperateOnStock(operation, identifier) {
+    const buyOrSell = askForSellOrBy()
+    insertPreviousPrices()
     if (isBuyOrSell(operation) === false || isIdentifiers(identifier) === false) {
         console.log("somthing went wrong! try to change values: ")
         return false
     }
     else {
-        const buyOrSell = askForSellOrBy()
+
         if (buyOrSell === "by") {
             const stockNameOrId = nameOrId()
             const stock = stockMarket.stocks.find(stock => stock.id === stockNameOrId || stock.name === stockNameOrId)
             const howMuch = askHowMuchUnits()
             By(stockNameOrId, howMuch)
-            console.log(stockMarket.stocks.find(stock1=>stock1.id === stock.id || stock1.name === stock.name))
+            console.log(stockMarket.stocks.find(stock1 => stock1.id === stock.id || stock1.name === stock.name))
             updateUp(stock.category, stock.id)
             console.log('this is evrione update')
-            console.log(stockMarket.stocks.filter(stock1=>stock1.id === stock.id || stock1.name === stock.name))
+            console.log(stockMarket.stocks.filter(stock1 => stock1.id === stock.id || stock1.name === stock.name))
         }
         else if (buyOrSell === "sell") {
             const stockNameOrId = nameOrId()
             const stock = stockMarket.stocks.find(stock => stock.id === stockNameOrId || stock.name === stockNameOrId)
             const howMuch = askHowMuchUnits()
             sell(stockNameOrId, howMuch)
-            console.log(stockMarket.stocks.find(stock1=>stock1.id === stock.id || stock1.name === stock.name))
+            console.log(stockMarket.stocks.find(stock1 => stock1.id === stock.id || stock1.name === stock.name))
             updateDown(stock.category, stock.id)
-            console.log(stockMarket.stocks.filter(stock1=>stock1.id === stock.id || stock1.name === stock.name))
+            console.log(stockMarket.stocks.filter(stock1 => stock1.id === stock.id || stock1.name === stock.name))
 
         }
         else {
